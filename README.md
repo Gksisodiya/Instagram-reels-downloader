@@ -10,3 +10,12 @@ Make sure your Termux environment is up-to-date:
 
 ```bash
 pkg update && pkg upgrade
+
+### 2. ***Install Python***
+
+install python3 if you haven't already:
+
+```bash
+pkg install python
+
+
