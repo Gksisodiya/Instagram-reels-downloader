@@ -11,9 +11,11 @@ This Python script allows you to download Instagram Reels videos directly to you
 - Supports multiple video resolutions (based on availability)
 
 ## Requirements
-- Python 3.x
-- Requests library
-- BeautifulSoup4 library
+
+To run this script, you need to have Python 3.x installed. Then, install the required dependencies by running the following command:
+
+```bash
+pip install -r requirements.txt
 
 ## Installation
 
