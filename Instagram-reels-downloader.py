@@ -1,50 +1,60 @@
 import os
-import requests
-from bs4 import BeautifulSoup
-import time
+import instaloader
+import yt_dlp as ydl
+from time import sleep
 
-def download_reel(url):
-    """Downloads an Instagram Reel video using web scraping."""
+# Function to download Instagram Reels
+def download_instagram_reel(url):
     try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-            "Accept-Language": "en-US,en;q=0.9",
-        }
-
-        # Fetch the page content with headers
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-
-        # Parse the HTML to find the video URL
-        soup = BeautifulSoup(response.text, 'html.parser')
-        video_tag = soup.find('meta', property='og:video')
-
-        if not video_tag:
-            print("❌ Reel video URL not found. Instagram may be blocking access.")
-            return
-
-        video_url = video_tag['content']
-
-        # Download the video
-        video_response = requests.get(video_url, headers=headers)
-        video_response.raise_for_status()
-
-        # Ensure "downloads" folder exists
-        if not os.path.exists("downloads"):
-            os.makedirs("downloads")
-
-        # Generate a unique filename
-        filename = os.path.join("downloads", f"reel_{int(time.time())}.mp4")
-
-        with open(filename, 'wb') as f:
-            f.write(video_response.content)
-
-        print(f"✅ Reel downloaded successfully! Saved as {filename}")
-    except requests.exceptions.HTTPError as http_err:
-        print(f"❌ HTTP error occurred: {http_err}")
+        loader = instaloader.Instaloader()
+        # Using instaloader to load the post from the URL
+        post = instaloader.Post.from_shortcode(loader.context, url.split("/")[-2])  # Get the shortcode from URL
+        # Download Reels from Instagram
+        print(f"Downloading Instagram Reels from: {url}")
+        loader.download_post(post, target="Instagram_Reels")
+        print("Download complete!")
     except Exception as e:
-        print(f"❌ An error occurred: {e}")
+        print(f"Error downloading Instagram Reels: {e}")
+
+# Function to download Facebook Video
+def download_facebook_video(url):
+    try:
+        ydl_opts = {
+            'format': 'bestvideo+bestaudio/best',  # Download the best quality video and audio
+            'outtmpl': 'Facebook_Video/%(title)s.%(ext)s',  # Save with video title
+            'quiet': False,
+            'no_warnings': True
+        }
+        with ydl.YoutubeDL(ydl_opts) as ydl_instance:
+            print(f"Downloading Facebook Video from: {url}")
+            ydl_instance.download([url])
+            print("Download complete!")
+    except Exception as e:
+        print(f"Error downloading Facebook video: {e}")
+
+# Function to display the menu and handle user input
+def show_menu():
+    print("\nChoose the platform to download video:")
+    print("1. Instagram")
+    print("2. Facebook")
+    print("3. Exit")
+
+def main():
+    while True:
+        show_menu()
+        choice = input("\nEnter your choice (1/2/3): ")
+
+        if choice == '1':
+            url = input("Enter the Instagram reel URL: ")
+            download_instagram_reel(url)
+        elif choice == '2':
+            url = input("Enter the Facebook video URL: ")
+            download_facebook_video(url)
+        elif choice == '3':
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice, please try again.")
 
 if __name__ == "__main__":
-    reel_url = input("Enter the Instagram Reel URL: ")
-    download_reel(reel_url)
+    main()
