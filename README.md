@@ -15,6 +15,9 @@ This Python script allows you to download Instagram Reels videos directly to you
 - Requests library
 - BeautifulSoup4 library
 
+#Install required librarya
+pip install requests beautifulsoup4
+
 ## Installation
 
 1. Clone the repository:
