@@ -9,9 +9,9 @@ This Python script allows you to download Instagram Reels videos directly to you
 Make sure your Termux environment is up-to-date:
 
 ```bash
-pkg update && pkg upgrade```
+pkg update && pkg upgrade
 
-### 2. ***Install Python***
+```### 2. ***Install Python***
 
 ```install python3 if you haven't already:
 
