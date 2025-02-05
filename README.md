@@ -27,3 +27,8 @@ Install pip to manage Python Packages:
 ```bash
 pkg install python-pip
 
+```
+### 4. ***Install Required Libraries***
+
+```bash
+pip install requests beautifulsoup4
