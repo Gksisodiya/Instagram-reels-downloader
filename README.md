@@ -47,4 +47,13 @@ Clone to repository:
 ```bash
 git clone https://github.com/Gksisodiya/Instagram-reels-downloader.git
 
+```
+
+### 7. ***Usage***
+
+Run the script:
+
+```bash
+python Instagram-reels-downloader.py
+
 
