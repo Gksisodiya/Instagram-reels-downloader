@@ -32,3 +32,19 @@ pkg install python-pip
 
 ```bash
 pip install requests beautifulsoup4
+ 
+```
+### 5. ***Install Git***
+
+```bash
+pkg install git
+
+```
+### 6. ***Installation***
+
+Clone to repository:
+
+```bash
+git clone https://github.com/Gksisodiya/Instagram-reels-downloader.git
+
+
