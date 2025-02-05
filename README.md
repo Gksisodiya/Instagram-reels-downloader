@@ -19,4 +19,11 @@ install python3 if you haven't already:
 ```bash
 pkg install python
 
+```
+### 3. ***Install pip (Python Package Manager)***
+
+Install pip to manage Python Packages:
+
+```bash
+pkg install python-pip
 
