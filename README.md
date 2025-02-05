@@ -13,9 +13,9 @@ pkg update && pkg upgrade```
 
 ### 2. ***Install Python***
 
-install python3 if you haven't already:
+```install python3 if you haven't already:
 
-```bash
+```
 pkg install python
 
 
